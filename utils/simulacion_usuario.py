@@ -13,7 +13,7 @@ def simular_usuarios(numeroUsuarios):
     for _ in range(numeroUsuarios):
 
         usuario = {
-            "id": random.randint(1, 100000),
+            "id": random.randint(1, 200),
             "nombre": random.choice(nombres),
             "correo": f"{random.choice(nombres).replace(' ','').lower()}@{random.choice(correos)}",
             "telefono": random.choice(telefonos_base) + str(random.randint(1000000, 9999999)),
@@ -22,19 +22,19 @@ def simular_usuarios(numeroUsuarios):
             "estado": random.choice(estados)
         }
 
-        # Inyectando errores controlados
+       
         probabilidadError = random.random()
 
         if probabilidadError < 0.2:
-            usuario["id"] = None
+            usuario["id"] = -1  
         elif probabilidadError < 0.4:
-            usuario["correo"] = None
-        elif probabilidadError < 0.6:
-            usuario["telefono"] = "abc123"
-        elif probabilidadError < 0.8:
-            usuario["numero_documento"] = None
+            usuario["correo"] = " " + usuario["correo"].upper()  
+        elif probabilidadError < 0.5:
+            usuario["telefono"] = "123"  
+        elif probabilidadError < 0.7:
+            usuario["tipo_documento"] = "XX"  
         elif probabilidadError < 0.9:
-            usuario["estado"] = "desconocido"
+            usuario["estado"] = "desconocido" 
 
         usuarios.append(usuario)
 
